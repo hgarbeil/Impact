@@ -1,0 +1,5 @@
+Sept 21, 2003 Harold Garbeil
+Added to the primary and secondary volume calcs w/in ImageFile.cpp to 
+skip pixel if marked as crater, rim and in case of secondary, primary.
+Previous to this, crater was omitted so it was being evaluated.
+

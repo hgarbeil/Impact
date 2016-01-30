@@ -1,0 +1,3 @@
+#define DEG2RAD .01745329
+#define RAD2DEG  57.2957795
+#define PI       3.14159265

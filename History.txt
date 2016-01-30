@@ -1,0 +1,11 @@
+Jan 22 2003  	HG   V2.2
+	Changed the way we calculate the crater diameter
+		initially, use npixels within rim trace -> convert to 
+		diam in pixels then multiply by avg pixel size
+		this craps out at high latitudes as we no longer have
+		circular craters (stretched on image)
+
+		now calculate by going from npixels to crater area in km^2
+		then get the equivalent diameter
+
+ 

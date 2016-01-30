@@ -1,0 +1,125 @@
+//{{NO_DEPENDENCIES}}
+// Microsoft Developer Studio generated include file.
+// Used by Newest.rc
+//
+#define IDD_ABOUTBOX                    100
+#define IDD_CFV_FORM                    101
+#define IDD_PROFILEFORM_FORM            102
+#define IDR_PROFILEFORM_TMPL            103
+#define IDR_MAINFRAME                   128
+#define IDR_NEWESTTYPE                  129
+#define IDD_DIALOG1                     130
+#define IDD_DIALOG2                     132
+#define IDD_DIALOG3                     133
+#define IDD_DIALOG4                     134
+#define IDD_DIALOG5                     135
+#define IDD_DIALOG6                     136
+#define IDD_FITRES_DLG                  137
+#define IDD_DIALOG7                     138
+#define IDD_CRATER_ID                   139
+#define IDD_FILESELECT_DLG              140
+#define IDI_ICON1                       142
+#define IDC_FILENAME                    1000
+#define IDC_SAMPS                       1001
+#define IDC_LINES                       1002
+#define IDC_BANDS                       1003
+#define IDC_DTYPE                       1004
+#define IDC_BFORM                       1005
+#define IDC_RBAND                       1006
+#define IDC_GBAND                       1007
+#define IDC_IDC_BBAND                   1009
+#define IDC_MINVAL                      1012
+#define IDC_MAXVAL                      1013
+#define IDC_USER_MNMX                   1020
+#define IDC_RADIO7                      1021
+#define IDC_VAL                         1022
+#define IDC_RADIO9                      1023
+#define IDC_VAL_MIN                     1026
+#define IDC_VAL_MAX                     1027
+#define IDC_EDIT1                       1028
+#define IDC_SUNELEV                     1031
+#define IDC_SUNAZ                       1032
+#define IDC_PIXDIM                      1033
+#define IDC_FITRESULTS                  1034
+#define IDC_RIM_PROF                    1036
+#define IDC_YMAX                        1037
+#define IDC_YMIN                        1038
+#define IDC_XMIN                        1039
+#define IDC_XMAX                        1040
+#define IDC_RIMTEXT                     1041
+#define IDC_Cratervol                   1042
+#define IDC_Rimvol                      1043
+#define IDC_Secvol                      1044
+#define IDC_Primvol                     1045
+#define IDC_BROWSE_OUTPUT               1046
+#define IDC_EDIT_OUTFILE                1047
+#define IDWRITEFILE                     1049
+#define IDC_CRATERID_EDIT               1050
+#define IDC_RIMPROF                     1051
+#define IDC_LOCATION                    1052
+#define IDC_SURFTEXT                    1053
+#define IDC_CHECK1                      1054
+#define IDC_AUTOSTATE                   1054
+#define IDC_CratRimText                 1055
+#define IDC_InnerLobe                   1056
+#define IDC_Outer                       1057
+#define IDC_BUTTON_STATSELECT           1058
+#define IDC_SURFACEFILE                 1059
+#define IDC_FEATUREFILE                 1060
+#define IDC_BUTTON_FEATURESELECT        1061
+#define IDC_BUTTON_ANALYSISSELECT       1062
+#define IDC_ANALYSISFILE                1063
+#define IDC_TREE1                       1064
+#define IDC_BROWSE_TABFILE              1065
+#define IDC_TABFILE                     1066
+#define IDC_LENGTH                      1067
+#define IDC_MAXHEIGHT                   1068
+#define IDC_MINHEIGHT                   1069
+#define IDC_BUTTON1                     1070
+#define IDC_ORIENTATION                 1071
+#define IDC_PROFWINDOW                  1072
+#define IDC_CENTSAMP                    1074
+#define IDC_CENTLINE                    1075
+#define IDC_YMAXLAB                     1076
+#define IDC_YMINLAB                     1077
+#define IDC_XMINLAB                     1078
+#define IDC_XMAXLAB                     1079
+#define IDC_YMID                        1080
+#define ID_DISPLAY_GRAYSCALE            32771
+#define ID_GEN_HDR                      32772
+#define IDC_RGB                         32773
+#define IDC_DISPOPTIONS                 32774
+#define ID_SHADE                        32775
+#define ID_STATISTICS_SUMMARY           32776
+#define IDC_SLOPEMAP                    32777
+#define ID_DEF_DEM                      32778
+#define ID_DEF_UNAFFECT                 32779
+#define ID_DEF_SHADE                    32780
+#define ID_DISP_SHADE                   32781
+#define IDC_DEF_RIM                     32782
+#define ID_DEF_INNERPRIMARY             32783
+#define ID_IMPACTANALYSIS_DEFINEPRIMARYSECONDARYBOUNDARY 32784
+#define ID_DEFINEPRIMARYSECONDARYBOUNDARY 32785
+#define ID_IMPACTANALYSIS_DEFINESECONDARY 32786
+#define ID_DEF_SECONDARY                32787
+#define ID_IMPACTANALYSIS_DEFINECRATERCENTERANDLOBE 32788
+#define IDC_DEFCRATERCTR                32789
+#define IDC_NEWCRATER                   32790
+#define IDC_DEFLOBES                    32791
+#define ID_SHOW_HITS                    32792
+#define ID_DEFINE_HITFILE               32793
+#define ID_DEF_ALTSHADEFILE             32794
+#define ID_SHOW_ALT_SHADE               32795
+#define ID_TOGGLE_ALT                   32796
+
+// Next default values for new objects
+// 
+#ifdef APSTUDIO_INVOKED
+#ifndef APSTUDIO_READONLY_SYMBOLS
+#define _APS_3D_CONTROLS                     1
+#define _APS_NEXT_RESOURCE_VALUE        143
+#define _APS_NEXT_COMMAND_VALUE         32798
+#define _APS_NEXT_CONTROL_VALUE         1081
+#define _APS_NEXT_SYMED_VALUE           104
+#endif
+#endif
