@@ -2195,8 +2195,18 @@ int CNewestView::MakeProfile(POINT *cpoints, int npts)
 	rimprof_corr = new float [totdist+30] ;
 	rimprof_coords = new CPoint [totdist+30] ; 
 	totdist=0 ;
-	outstr.Format ("XLOC\tYLOC\tAZIMUTH\tRADIUS\tELEV\tCORR_ELEV\r\n") ;
-	cfil.Write (outstr, outstr.GetLength() ) ;
+	
+	float *azimRad = new float [360] ;
+	float *azimElev = new float [360] ;
+	float *azimCElev= new float [360] ;
+	int *nptsAzim = new int [360] ;
+	int azimBin ;
+	for (i=0; i<360; i++) {
+		azimRad[i] = 0. ;
+		azimElev[i] = 0. ;
+		azimCElev[i] = 0. ;
+		nptsAzim[i] = 0 ;
+	}
 	for (i=0; i<npts-1; i++)
 	{
 		 xdist = cpoints[i+1].x - cpoints[i].x ;
@@ -2221,18 +2231,57 @@ int CNewestView::MakeProfile(POINT *cpoints, int npts)
 			 xrad = (xloc - cnd->centroid_x) * cnd->xsize_meters ;
 			 yrad = (cnd->centroid_y - yloc) * cnd->ysize_meters ;
 			 radius = sqrt (xrad * xrad + yrad * yrad) ;
-			 azimuth = atan2 (xrad, yrad) ;
+			 // convert to degrees
+			 azimuth = atan2 (xrad, yrad) * 57.29578  ;
+			 if (azimuth < 0.) azimuth += 360. ;
+			 azimBin = int(azimuth+0.5) ;
+			 if (azimBin > 359) azimBin = 359 ;
+			 azimRad[azimBin] += radius ;
+			 nptsAzim[azimBin] += 1 ;
 			 rimprof [totdist] = cifdem->GetVal (xloc, yloc) ;
+			 azimElev[azimBin] += rimprof[totdist] ;
+			 azimCElev[azimBin] += rimprof_corr[totdist] ;
 			 totalRadius += radius ;
-			 outstr.Format ("%d\t%d\t%f\t%f\t%f\t%f\r\n", xloc, yloc, azimuth,
-				 radius, rimprof[totdist], rimprof_corr[totdist]) ;
-			 cfil.Write (outstr, outstr.GetLength()) ;
+			
 			 totdist++ ;
 			 
 		 }
 	}
+	for (i=0; i<360; i++) {
+		if (nptsAzim[i] <= 0) continue ;
+			azimRad[i] /= nptsAzim[i] ;
+			azimElev[i] /= nptsAzim[i] ;
+			azimCElev[i]/=nptsAzim[i] ;
+	}
+	int is, lowI, highI, ldist, hdist ;
+	float fracLow, fracHigh, totDist ;
+	bool fLow, fHigh ;
+	for (i=0; i<360; i++) {
+		if (nptsAzim[i] >0) continue ;
+		for (is=1; is<360; is++) {
+			lowI = i - is ;
+			if (lowI < 0) lowI += 360 ;
+			ldist = is ;
+			if (nptsAzim[lowI] >0) break ;
+			
+		}
+		for (is=1; is<360; is++) {
+			highI = i + is ;
+			if (highI > 359) highI -= 360 ;
+			hdist = is ;
+			if (nptsAzim[highI] >0) break ;
+		}
+		totDist = ldist + hdist ;
+		fracLow = float (hdist) / totDist ;
+		fracHigh = float (ldist) / totDist ;
+		azimRad[i] = azimRad[lowI] * fracLow + azimRad[highI] * fracHigh ;
+		azimElev[i] = azimElev[lowI] * fracLow + azimElev[highI] * fracHigh ;
+		azimCElev[i] = azimCElev[lowI] * fracLow + azimCElev[highI] * fracHigh ;
+	}
+		
+		 
 	totalRadius /=  totdist ;
-	cfil.Close() ;
+	
 	//for (i=0; i<totdist; i++) {
 	//	xdist = r
 
@@ -2242,6 +2291,15 @@ int CNewestView::MakeProfile(POINT *cpoints, int npts)
 	float diam = float (totdist) / 3.1415927 ;
 
 	
+	outstr.Format ("AZIMUTH\tRADIUS\tAveRad\tELEV\tCORR_ELEV\r\n") ;
+	cfil.Write (outstr, outstr.GetLength() ) ;
+	for (i=0;i<360; i++) {
+		outstr.Format ("%d\t%f\t%f\t%f\t%f\r\n",i, azimRad[i], totalRadius,
+				 azimElev[i], azimCElev[i]) ;
+		cfil.Write (outstr, outstr.GetLength()) ;
+	}
+
+	cfil.Close() ;
 	cnd->rimprof_avg = avetotal ;
 	cnd->rimprof_max = maxval ;
 	cnd->rimprof_min = minval ;
@@ -2286,6 +2344,10 @@ int CNewestView::MakeProfile(POINT *cpoints, int npts)
 	delete [] rimprof ;
 	delete [] rimprof_corr ;
 	delete [] rimprof_coords ;
+	delete [] nptsAzim ;
+	delete [] azimRad ;
+	delete [] azimElev ;
+	delete [] azimCElev ;
 	return (totdist) ;
 
 }
